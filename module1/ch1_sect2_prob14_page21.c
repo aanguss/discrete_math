@@ -1,20 +1,15 @@
 /** 
  * Chapter 1 - Counting
- * Section 1 - Basic Counting
- * Problem 1 - Page 8
+ * Section 2 - Counting Lists, Permutations, and Subsets
+ * Problem 14 - Page 21
  * Description -
- *  The following segment of code is part of a program 
- *  that uses insertion sort to sort a list A.
- *      for i = 2 to n
- *          j=i
- *          while(j ≥ 2)and(A[j] < A[j-1])
- *              exchange A[j] and A[j-1]
- *              j = j - 1
- *  What is the maximum number of times (considering all 
- *  lists of n items that you could be asked to sort) the 
- *  program makes the comparison A[j] < A[j-1]?  Describe 
- *  as succinctly as you can those lists that require this 
- *  number of comparisons.
+    At the local ice cream shop, you may get a three-way 
+    sundae with up to three of the 10 flavors of ice cream; 
+    any one of three flavors of topping; and any (or all, 
+    some, or none) of whipped cream, nuts, and a cherry. 
+    How many different sundaes are possible? (In accordance 
+    with your mother’s rule from Problem 11 in Section 1.1, 
+    the way the scoops sit in the dish does not matter.)
  */
 
 /** 
@@ -58,9 +53,6 @@ int sortAndCount(char * name, int *array, int size) {
 /* find max evaluations for two lists and print results */
 int main(void) {
     int numEvaluations = 0;
-    // min eval - in order
-    int A_min[7] = {0, 1, 2, 3, 5, 7, 10};
-    int n_min = sizeof(A_min)/sizeof(int);
     // max eval - out of order
     int A_max[7] = {0, 1, 10, 7, 5, 3, 2};
     int n_max = sizeof(A_max)/sizeof(int);
@@ -69,9 +61,5 @@ int main(void) {
     numEvaluations = sortAndCount("A_min", &A_min[0], n_min);
     printf("number of times while was evaluated: %d\n", numEvaluations);
     
-    // find number of while evaluations for max unordered array
-    numEvaluations = sortAndCount("A_max", &A_max[0], n_max);
-    printf("number of times while was evaluated: %d\n", numEvaluations);
-
     return 0;
 }
