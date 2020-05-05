@@ -31,27 +31,52 @@ void printArray(char * name, int *array, int size) {
 /* find max evaluations for two lists and print results */
 int main(void) {
     // keep track of the number of combinations
-    int numCombinations = 0;
+    int totalCombinations = 0;
     
     // 10 flavors, simply noted from #0 to #9
     int iceCream[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
     int iceCreamSize = sizeof(iceCream) / sizeof(int);
-    int iceCreamAllowed = 3;
-    int iceCreamCombinations[1000];
+    int iceCreamCombinations;
     
-    // choose 3 ice cream flavor - first flavor
-    for (int i = 0; i < iceCreamAllowed; i++) {
+    // 3 final toppings, noted #0 to #2
+    int finalTopping[3] = {0, 1, 2};
+    int finalToppingSize = sizeof(finalTopping) / sizeof(int);
+    int finalToppingCombinations;
+
+    // 3 options for second layer
+    int secondLayerSize = 3;
+    
+    // choose 3 ice cream flavors - it can be the same flavor for each
+    printf("\nICE CREAM FLAVORS:\n");
+    // first flavor
+    for (int i = 0; i < iceCreamSize; i++) {
         // second flavor
-        for (int j = 0; j < iceCreamSize; j++) {
+        for (int j = i; j < iceCreamSize; j++) {
             // third flavor
-            for (int k = 0; k < iceCreamSize; k++) {
+            for (int k = j; k < iceCreamSize; k++) {
                 printf("%d%d%d ", iceCream[i], iceCream[j], iceCream[k]);
-                numCombinations;                
+                totalCombinations++;                
+            }   
+        }
+    }
+
+    // we can only select 1 of the 3 second layer
+    totalCombinations += 3;
+
+    // choose 3 of the final toppings - none, one, two, or three
+    printf("\nFINAL TOPPINGS:\n");
+    for (int i = 0; i < finalToppingSize; i++) {
+        // second flavor
+        for (int j = i; j < finalToppingSize; j++) {
+            // third flavor
+            for (int k = j; k < finalToppingSize; k++) {
+                printf("%d%d%d ", finalTopping[i], finalTopping[j], finalTopping[k]);
+                totalCombinations++;                
             }   
         }
     }
     
-    printf("number of sundae combinations: %d\n", numCombinations);
+    printf("\nnumber of sundae combinations: %d\n", totalCombinations);
     
     return 0;
 }
