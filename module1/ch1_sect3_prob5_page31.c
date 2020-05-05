@@ -35,7 +35,7 @@ int main(void) {
     int secondLayerSize = 3;
     
     // red chairs
-    printf("\nChairs Painted Blue:\n");
+    printf("\n");
     // 3 blue chairs
     for (int i = 0; i < 10; i++) {
         for (int j = i + 1; j < 10; j++) {
