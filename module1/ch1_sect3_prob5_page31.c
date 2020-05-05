@@ -28,6 +28,8 @@ int main(void) {
     int greenChairs = 3;
     int blueChairs = 3;
     int redChairs = 4;
+    int validRedChairs[4];
+    int redChairIndex = 0;
 
     // 3 options for second layer
     int secondLayerSize = 3;
@@ -42,15 +44,28 @@ int main(void) {
                 for (int l = 0; l < 10; l++) {
                     for (int m = l + 1; m < 10; m++) {
                         for (int n = m + 1; n < 10; n++) {
-
+                            // green can't use same chairs as blue
                             if (l == i || l == j || l == k) {
                                 // do nothing
                             } else if (m == i || m == j || m == k) {
                                 // do nothing
                             } else if (n == i || n == j || n == k) {
-                                        // do nothing
+                                // do nothing
                             } else { 
-                                printf(" B:%d%d%d_G:%d%d%d", i, j, k, l, m, n);
+                                // 4 red chairs remain
+                                redChairIndex = 0;
+                                for (int p = 0; p < 10; p++) {
+                                    if (p == i || p == j || p == k || p == l || p == m || p == n) {
+                                        // do nothing
+                                    } else {
+                                        validRedChairs[redChairIndex] = p;
+                                        redChairIndex++;
+                                    }
+                                }
+                                // red can't use same chairs as green or blue
+                                printf(" B:%d%d%d_G:%d%d%d_R:%d%d%d%d", i, j, k, 
+                                        l, m, n, validRedChairs[0], validRedChairs[1],
+                                        validRedChairs[2], validRedChairs[3]);
                                 totalCombinations++;
                             }
                         }
