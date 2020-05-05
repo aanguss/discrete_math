@@ -28,38 +28,30 @@ void printArray(char * name, int *array, int size) {
     printf("\n");
 }
 
-/* sort algorithm given by problem and return number of evals*/
-int sortAndCount(char * name, int *array, int size) {
-    int i, j, numEvaluations = 0;
-
-    for (i = 2; i <= size; i++) {
-        j = i;
-        printArray(name, &array[0], size);
-        while (j >= 2 && (array[j] < array[j-1])) {
-            // increment number of evaluations of while loop
-            numEvaluations++;
-
-            // swap values
-            array[j] = array[j] ^ array[j-1];
-            array[j-1] = array[j] ^ array[j-1];
-            array[j] = array[j] ^ array[j-1];
-            j = j - 1;
+/* find max evaluations for two lists and print results */
+int main(void) {
+    // keep track of the number of combinations
+    int numCombinations = 0;
+    
+    // 10 flavors, simply noted from #0 to #9
+    int iceCream[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int iceCreamSize = sizeof(iceCream) / sizeof(int);
+    int iceCreamAllowed = 3;
+    int iceCreamCombinations[1000];
+    
+    // choose 3 ice cream flavor - first flavor
+    for (int i = 0; i < iceCreamAllowed; i++) {
+        // second flavor
+        for (int j = 0; j < iceCreamSize; j++) {
+            // third flavor
+            for (int k = 0; k < iceCreamSize; k++) {
+                printf("%d%d%d ", iceCream[i], iceCream[j], iceCream[k]);
+                numCombinations;                
+            }   
         }
     }
     
-    return numEvaluations;
-}
-
-/* find max evaluations for two lists and print results */
-int main(void) {
-    int numEvaluations = 0;
-    // max eval - out of order
-    int A_max[7] = {0, 1, 10, 7, 5, 3, 2};
-    int n_max = sizeof(A_max)/sizeof(int);
-
-    // find number of while evaluations for ordered array
-    numEvaluations = sortAndCount("A_min", &A_min[0], n_min);
-    printf("number of times while was evaluated: %d\n", numEvaluations);
+    printf("number of sundae combinations: %d\n", numCombinations);
     
     return 0;
 }
