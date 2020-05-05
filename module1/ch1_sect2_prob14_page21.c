@@ -19,15 +19,6 @@
  */
 #include <stdio.h>
 
-/* print array helper function */
-void printArray(char * name, int *array, int size) {
-    printf("%s[%d] = ", name, size);
-    for(int i = 0; i < size; i++) {
-        printf("%d ", array[i]);
-    }
-    printf("\n");
-}
-
 /* find max evaluations for two lists and print results */
 int main(void) {
     // keep track of the number of combinations
@@ -47,35 +38,38 @@ int main(void) {
     int secondLayerSize = 3;
     
     // choose 3 ice cream flavors - it can be the same flavor for each
-    printf("\nICE CREAM FLAVORS:\n");
+    printf("\nICE-CREAM_SECOND-LAYER_FINAL-TOPPINGS:\n");
     // first flavor
     for (int i = 0; i < iceCreamSize; i++) {
         // second flavor
         for (int j = i; j < iceCreamSize; j++) {
             // third flavor
             for (int k = j; k < iceCreamSize; k++) {
-                printf("%d%d%d ", iceCream[i], iceCream[j], iceCream[k]);
-                totalCombinations++;                
+                // second layer to choose from
+                for (int secondLayer = 0; secondLayer < secondLayerSize; secondLayer++) {
+                    // final layer of toppings
+                    // select no toppings
+                    printf("%d%d%d_%d_xxx ", iceCream[i], iceCream[j], iceCream[k], secondLayer);
+                    totalCombinations++;
+
+                    // choose 2 of the final toppings - one or two
+                    // first option
+                    for (int finalTopping1 = 0; finalTopping1 < finalToppingSize; finalTopping1++) {
+                        // second options
+                        for (int finalTopping2 = finalTopping1; finalTopping2 < finalToppingSize; finalTopping2++) {
+                            printf("%d%d%d_%d_%d%d ", iceCream[i], iceCream[j], iceCream[k], secondLayer, finalTopping1, finalTopping2);
+                            totalCombinations++;
+                        }
+                    }
+
+                    // select all 3 toppings
+                    printf("%d%d%d_%d_012 ", iceCream[i], iceCream[j], iceCream[k], secondLayer);
+                    totalCombinations++;
+                }      
             }   
         }
     }
 
-    // we can only select 1 of the 3 second layer
-    totalCombinations += 3;
-
-    // choose 3 of the final toppings - none, one, two, or three
-    printf("\nFINAL TOPPINGS:\n");
-    for (int i = 0; i < finalToppingSize; i++) {
-        // second flavor
-        for (int j = i; j < finalToppingSize; j++) {
-            // third flavor
-            for (int k = j; k < finalToppingSize; k++) {
-                printf("%d%d%d ", finalTopping[i], finalTopping[j], finalTopping[k]);
-                totalCombinations++;                
-            }   
-        }
-    }
-    
     printf("\nnumber of sundae combinations: %d\n", totalCombinations);
     
     return 0;
