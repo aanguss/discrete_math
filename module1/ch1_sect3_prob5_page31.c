@@ -34,64 +34,31 @@ int main(void) {
     
     // red chairs
     printf("\nChairs Painted Blue:\n");
-    // blue chairs
+    // 3 blue chairs
     for (int i = 0; i < 10; i++) {
         for (int j = i + 1; j < 10; j++) {
             for (int k = j + 1; k < 10; k++) {
-                // printf(" B:%d%d%d_", i, j, k);
-
-                // 1 green chairs
+                // 3 green chairs
                 for (int l = 0; l < 10; l++) {
-                    if (l == i || l == j || l == k) {
-                        // do nothing
-                    } else {
-                        for (int m = l + 1; m < 10; m++) {
-                            if (m == i || m == j || m == k) {
+                    for (int m = l + 1; m < 10; m++) {
+                        for (int n = m + 1; n < 10; n++) {
+
+                            if (l == i || l == j || l == k) {
                                 // do nothing
-                            } else {
-                                for (int n = m + 1; n < 10; n++) {
-                                    if (m == i || m == j || m == k) {
+                            } else if (m == i || m == j || m == k) {
+                                // do nothing
+                            } else if (n == i || n == j || n == k) {
                                         // do nothing
-                                    } else { 
-                                        printf(" B:%d%d%d_G:%d%d%d", i, j, k, l, m, n);
-                                        totalCombinations++;
-                                    }
-                                }
+                            } else { 
+                                printf(" B:%d%d%d_G:%d%d%d", i, j, k, l, m, n);
+                                totalCombinations++;
                             }
+                        }
                     }
                 }
-
-                // green chairs
-                // for (int l = 9; l > 0; l--) {
-                //     for (int m = l - 1; m > 0; m--) {
-                //         for (int n = m - 1; n > 0; n--) {
-                //             if ((l == (i || j || k)) || (m == (i || j || k)) || (n == (i || j || k))) {
-                //                 // do nothing
-                //             } else {
-                                // printf(" G:%d%d%d", l, m, n);
-                                // totalCombinations++;
-                //             }
-                //         }
-                //     }
-                // }
             } 
         }  
     }
-
-    // // choose 3 ice cream flavors - it can be the same flavor for each
-    // printf("\nICE-CREAM_SECOND-LAYER_FINAL-TOPPINGS:\n");
-    // // first flavor
-    // for (int l = 0; l < 7; l++) {
-    //     // second flavor
-    //     for (int m = l; m < 7; m++) {
-    //         // third flavor
-    //         for (int n = m; n < 7; n++) {
-    //             // select all 3 toppings
-    //             printf("%d%d%d ", l, m, n);
-    //             totalCombinations++;   
-    //         }   
-    //     }
-    // }
 
     printf("\nnumber of sundae combinations: %d\n", totalCombinations);
     
