@@ -13,13 +13,10 @@
  * Problem 3 - Page 72
  */
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
 /* defines for type of caeser cipher */
 #define SHIFT_AMOUNT 3
-#define SHIFT_LEFT 1
-#define SHIFT_RIGHT 0
 
 /* caeser cipher encode in main function */
 int main(void) {
