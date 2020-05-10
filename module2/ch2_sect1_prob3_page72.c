@@ -23,12 +23,17 @@
 
 /* caeser cipher encode in main function */
 int main(void) {
-    char alphabet[27] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+    char lowerAlphabet[27] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+    char upperAlphabet[27] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
     char * userString = "HERE IS A MESSAGE";
 
     printf("\n%s is encoded as: ", userString);
     for (int i = 0; i < strlen(userString); i++) {
-        printf("%c", alphabet[ (userString[i] - SHIFT_AMOUNT) % 26 ]);
+        if (userString[i] == ' ') {
+            printf("%c", userString[i]);
+        } else {
+            printf("%c", upperAlphabet[ (userString[i] - SHIFT_AMOUNT) % 26 ]);
+        }
     }
     printf("\n\n");
 
