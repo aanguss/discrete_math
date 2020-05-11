@@ -21,22 +21,11 @@
  * Problem 3 - Page 114
  */
 #include <stdio.h>
-
-/* calculate true modulo  to handle negative values */
-int mod(int val, int modVal) {
-    int remainder = val % modVal;
-    
-    /* make sure mod is actually returned when negative value calculated */
-    if (remainder < 0) {
-        remainder += modVal;
-    } 
-
-    return remainder;
-}
+#include <stdint.h>
 
 /* exponent helper function for simple use with output up to 2,147,483,647 */
-int power(int val, int exp) {
-    int newVal = 1;
+double power(int val, int exp) {
+    double newVal = 1;
 
     for (int i = 0; i < exp; i++) {
         newVal *= val;
@@ -45,9 +34,28 @@ int power(int val, int exp) {
     return newVal;
 }
 
+int digitAmount(uint64_t val) {
+    int digitCount = 0;
+
+    /* keep shifting till nothing is left */
+    while (val > 0) {
+        val = val >> 4;
+        digitCount++;
+    }
+
+    return digitCount;
+}
+
 /* main function for 2.4-3 */
 int main(void) {
-    
-
+    int digits = digitAmount(1000);
+    int modDigits = mod(1000,8);
+    printf("\n");
+    printf("2^10 (%.0f) has %d many digits\n", power(2,10), digitAmount(power(2,10)));
+    printf("2^30 (%.0f) has %d many digits\n", power(2,30), digitAmount(power(2,30)));
+    printf("2^40 (%.0f) has %d many digits\n", power(2,40), digitAmount(power(2,40)));
+    printf("-------------\n");
+    printf("2^120 = (2^40)(2^40)(2^40) and has %d many digits\n", 3*digitAmount(power(2,40)));
+    printf("\n");
     return 0;
 }
