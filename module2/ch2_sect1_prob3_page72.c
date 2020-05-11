@@ -13,7 +13,6 @@
  * Problem 3 - Page 72
  */
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
 /* defines for type of caeser cipher */
@@ -40,17 +39,12 @@ int main(void) {
 
     printf("\n\"%s\" is encoded as: ", userString);
     for (int i = 0; i < strlen(userString); i++) {
-        printf("\n");
-        printf("%c[%d]->", userString[i], userString[i]);
         if (userString[i] == ' ') {
             printf("%c", userString[i]);
         } else {
-            int alphaIndex = (((int)userString[i] - ASCII_START_INDEX - SHIFT_AMOUNT) % ALPHABET_SIZE) + ASCII_START_INDEX;
-            int al = (int)userString[i] - ASCII_START_INDEX - SHIFT_AMOUNT;
-            int alpha = mod(al, ALPHABET_SIZE);
-            printf("%d->", al);
-            printf("%d->", alpha);
-            printf("%c[%d]", alphaIndex, alphaIndex);
+            int alphaIndex = (int)userString[i] - ASCII_START_INDEX - SHIFT_AMOUNT;
+            alphaIndex = mod(alphaIndex, ALPHABET_SIZE) + ASCII_START_INDEX;
+            printf("%c", alphaIndex);
         }
     }
     printf("\n\n");
