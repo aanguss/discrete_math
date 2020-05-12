@@ -35,7 +35,7 @@ double power(int val, int exp) {
 }
 
 int digitAmount(uint64_t val) {
-    int digitCount = 0;
+    int digitCount = 1;
 
     /* keep shifting till nothing is left */
     while (val > 0) {
@@ -49,11 +49,13 @@ int digitAmount(uint64_t val) {
 /* main function for 2.4-3 */
 int main(void) {
     int digits = digitAmount(1000);
-    int modDigits = mod(1000,8);
     printf("\n");
     printf("2^10 (%.0f) has %d many digits\n", power(2,10), digitAmount(power(2,10)));
+    printf("10^3 (%.0f) has %d many digits\n", power(10,3), digitAmount(power(10,3)));
     printf("2^30 (%.0f) has %d many digits\n", power(2,30), digitAmount(power(2,30)));
+    printf("10^8 (%.0f) has %d many digits\n", power(10,8), digitAmount(power(10,8)));
     printf("2^40 (%.0f) has %d many digits\n", power(2,40), digitAmount(power(2,40)));
+    printf("10^12 (%.0f) has %d many digits\n", power(10,12), digitAmount(power(10,12)));
     printf("-------------\n");
     printf("2^120 = (2^40)(2^40)(2^40) and has %d many digits\n", 3*digitAmount(power(2,40)));
     printf("\n");
