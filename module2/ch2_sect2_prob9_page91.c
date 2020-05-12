@@ -98,14 +98,14 @@ int main(void) {
     int key = mod(a*b*q, p);
     int x, y;
 
-    printf("\nIterate with a different given q from 5 to 10:\n");
+    printf("\nIterate with a different given q from 0 to %d:\n", p - 1);
 
     for (int i = 0; i < p; i++) {
         q = i;
         bobMessage = mod(b*q, p);
         aliceMessage = mod(a*q, p);
         key = mod(a*b*q, p);
-        
+
         printf("[   q = %d   ]\n", i);
         printf("gcd of %d and %d = %d\n", a, b, gcd(a,b));
         if (egcd(a,b,&x,&y) > 0) {
