@@ -57,7 +57,7 @@ int main(void) {
     printf("2^40 (%.0f) has %d many digits\n", power(2,40), digitAmount(power(2,40)));
     printf("10^12 (%.0f) has %d many digits\n", power(10,12), digitAmount(power(10,12)));
     printf("-------------\n");
-    printf("2^120 = (2^40)(2^40)(2^40) and has %d many digits\n", 3*digitAmount(power(2,40)));
+    printf("10^120 = (10)(2^40) and has %d many digits\n", 10*digitAmount(power(2,40)));
     printf("\n");
     return 0;
 }
