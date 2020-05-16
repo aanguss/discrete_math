@@ -33,11 +33,9 @@ int main(void) {
     int s, neg_s;
     double s_dbl, neg_s_dbl;
 
-    // add some space and print a header for the first truth table
+    // space at the start
     printf("\n");
-    // printf("s\tt\t!s\t!(s||t)\t!(s||!t)\t!(s||t)&&!(s||!t)\n");
-    // printf("s\tt\t!s\t!(s||t)&&!(s||!t)\tEQUIVALENT\n");
-    
+
     // go through each iteration of s and t and print results
     for (s = 1; s <= 0xFFF; s++) {
         s_dbl = power(s,2);
@@ -48,12 +46,10 @@ int main(void) {
             printf("\n\nNOT TRUE: s = %d, -s = %d\n", s, neg_s);
             break;
         }
-        // printf("%d\t%d\t%d\t%d\t\t\t%s\n", s, t, snot, final, final == snot?"TRUE":"FALSE");
     }
 
     // space at the end
     printf("\n");
-
 
     return 0;
 }
