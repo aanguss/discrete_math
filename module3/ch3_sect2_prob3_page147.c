@@ -16,9 +16,43 @@
 #include <stdio.h>
 #include <string.h>
 
+/* exponent helper function for simple use with output up to 2,147,483,647 */
+int power(int val, int exp) {
+    int newVal = 1;
+
+    for (int i = 0; i < exp; i++) {
+        newVal *= val;
+    }
+
+    return newVal;
+}
+
 /* main function */
 int main(void) {
+    // needed variables
+    int s, neg_s;
+    double s_dbl, neg_s_dbl;
+
+    // add some space and print a header for the first truth table
+    printf("\n");
+    // printf("s\tt\t!s\t!(s||t)\t!(s||!t)\t!(s||t)&&!(s||!t)\n");
+    // printf("s\tt\t!s\t!(s||t)&&!(s||!t)\tEQUIVALENT\n");
     
+    // go through each iteration of s and t and print results
+    for (s = 1; s <= 0xFFF; s++) {
+        s_dbl = power(s,2);
+        neg_s = -s;
+        neg_s_dbl = power(neg_s,2);
+        printf("%d^2= %0.f\t%d^2= %0.f\t%s\n", s, s_dbl, neg_s, neg_s_dbl, (s_dbl && neg_s_dbl) >= 0?"TRUE":"FALSE");
+        if (!(s_dbl >= 0) || !(neg_s_dbl >= 0)) {
+            printf("\n\nNOT TRUE: s = %d, -s = %d\n", s, neg_s);
+            break;
+        }
+        // printf("%d\t%d\t%d\t%d\t\t\t%s\n", s, t, snot, final, final == snot?"TRUE":"FALSE");
+    }
+
+    // space at the end
+    printf("\n");
 
 
     return 0;
