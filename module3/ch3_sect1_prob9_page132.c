@@ -43,5 +43,8 @@ int main(void) {
         }
     }
 
+    // space at the end
+    printf("\n");
+
     return 0;
 }
