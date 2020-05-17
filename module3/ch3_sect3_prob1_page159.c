@@ -19,8 +19,13 @@
 
 /* main function */
 int main(void) {
-    
+    // no needed variables
 
+    // space at the start
+    printf("\nNO WORK NEEDED FOR THIS PROBLEM\n");
+
+    // space at the end
+    printf("\n");
 
     return 0;
 }
