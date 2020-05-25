@@ -52,6 +52,7 @@ int main(void) {
         printf("recursive:  %d(%d+1)           = %d\n", i, i, rsum);
         if (sum != rsum) {
             printf("ERROR: sum and rsum do not equal.\n");
+            break;
         }
         printf("\n");
     }
