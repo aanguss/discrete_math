@@ -26,7 +26,7 @@ int recursiveTotal(int n) {
 
     /* base condition is 1, return when found n = 1 */
     if (n == 1) {
-        return 1;
+        return (n*(n+1));
     }
 
     runningTotal = n*(n+1);
@@ -48,8 +48,8 @@ int main(void) {
         sum = i*(i+1)*(i+2)/3;
         rsum = recursiveTotal(i);
         printf("----%d----\n", i);
-        printf("%d(%d+1)(%d+2)/3 = %d\n", i, i, i, sum);
-        printf("recursive %d(%d+1) = %d\n", i, i, i, sum);
+        printf("total:      %d(%d+1)(%d+2)/3    = %d\n", i, i, i, sum);
+        printf("recursive:  %d(%d+1)           = %d\n", i, i, rsum);
         if (sum != rsum) {
             printf("ERROR: sum and rsum do not equal.\n");
         }
