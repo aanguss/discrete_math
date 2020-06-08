@@ -70,15 +70,15 @@ int main(void)
             if (five_flips[i][j] == 2) {
                 numHeads++;
             }
-            printf("%c, ", five_flips[i][j]==1?'H':'T');
+            printf("%c", five_flips[i][j]==1?'H':'T');
         }
         if (numHeads == 3) { num3Heads++; }
         if (numHeads >= 3) { num3PlusHeads++; }
-        printf("\n"); // new line for each five flips
+        printf(" | "); // new line for each five flips
     }
 
     // print results
-    printf("number of 3 heads: %d, which gives P(H) = %f\n", num3Heads, (float)num3Heads/100);
+    printf("\nnumber of 3 heads: %d, which gives P(H) = %f\n", num3Heads, (float)num3Heads/100);
     printf("number of at least 3 heads: %d, which gives P(H) = %f\n", num3PlusHeads, (float)num3PlusHeads/100);
 
     // some space
