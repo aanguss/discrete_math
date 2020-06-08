@@ -21,70 +21,94 @@
 #include <time.h>
 #include <stdint.h>
 
+#define TRUE 1
+
 int main(void)
 {
     //Simulate the randomness of getting the coins out… and output
     time_t t;
-    uint32_t heads = 0;
-    uint32_t tails = 0;
+    uint32_t iterations = 1000;
+    uint32_t coinDraws[iterations][5]; // each fresh cup will have 5 coins
+    uint32_t lastQuarter = 0;
+    uint32_t lastDime = 0;
+    uint32_t lastNickel = 0;
+    uint32_t quartersLeft = 2;
+    uint32_t nickelsLeft = 1;
+    uint32_t dimesLeft = 2;
     
     // start with seperation so results are easier to see
     printf("\n");
-    printf("flip a coin 1000 times, results are:\n");
+    printf("draw from %d fresh cups and track the coils pulled:\n", iterations);
 
     // start randomness with current time
     srand((unsigned) time(&t));
 
-    // go through 1000 coins and find probability of each heads and tails
-    for (int i = 0; i < 1000; i++) {
-        if (((rand() % 2) + 1) == 2) {
-            heads++;
-        } else {
-            tails++;
-        }
-    }
-    printf("heads: %d\n", heads);
-    printf("tails: %d\n", tails);
-    
-    printf("\n");
-    printf("now let's flip a coin 5 times and find out how many times heads lands 3 times:\n");
-    uint32_t five_flips[100][5];
-
-    // initialize all the coin flips to -1
-    for (int i = 0; i < 100; i++) {
+    // null out all values in deck
+    for (int i = 0; i < iterations; i++) {
         for (int j = 0; j < 5; j++) {
-            five_flips[i][j] = 0;
+            coinDraws[i][j] = 0;
         }
     }
 
-    // now add a coin value for each
-    for (int i = 0; i < 100; i++) {
+    // let's draw coins and keep track of each available coin draw
+    for (int i = 0; i < iterations; i++) {
+        quartersLeft = 2;
+        nickelsLeft = 1;
+        dimesLeft = 2;
         for (int j = 0; j < 5; j++) {
-            five_flips[i][j] = ((rand() % 2) + 1);
-        }
-    }
-
-    // let's print them for funzies
-    int num3Heads = 0;
-    int num3PlusHeads = 0;
-    for (int i = 0; i < 100; i++) {
-        int numHeads = 0;
-        for (int j = 0; j < 5; j++) {
-            if (five_flips[i][j] == 2) {
-                numHeads++;
+            while(TRUE) {
+                coinDraws[i][j] = (rand() % 5) + 1;
+                // printf("%d", coinDraws[i][j]);
+                if ((quartersLeft != 0) && (coinDraws[i][j] >= 1 && coinDraws[i][j] <= 2)) {
+                    quartersLeft--;
+                    if (dimesLeft == 0 && nickelsLeft == 0) {
+                        lastQuarter++;
+                    }
+                    break;
+                } else if ((nickelsLeft != 0) && (coinDraws[i][j] == 3)) {
+                    nickelsLeft--;
+                    if (quartersLeft == 0 && dimesLeft == 0) {
+                        lastNickel++;
+                    }
+                    break;
+                } else if ((dimesLeft != 0) && (coinDraws[i][j] >= 4 && coinDraws[i][j] <= 5)) {
+                    dimesLeft--;
+                    if (quartersLeft == 0 && nickelsLeft == 0) {
+                        lastDime++;
+                    }
+                    break;
+                }
             }
-            printf("%c, ", five_flips[i][j]==1?'H':'T');
         }
-        if (numHeads == 3) { num3Heads++; }
-        if (numHeads >= 3) { num3PlusHeads++; }
-        printf("\n"); // new line for each five flips
+        // printf("\n");
     }
 
-    // print results
-    printf("number of 3 heads: %d, which gives P(H) = %f\n", num3Heads, (float)num3Heads/100);
-    printf("number of at least 3 heads: %d, which gives P(H) = %f\n", num3PlusHeads, (float)num3PlusHeads/100);
+    // print all results
+    for (int i = 0; i < iterations; i++) {
+        for (int j = 0; j < 5; j++) {
+            printf("%c", coinDraws[i][j]<=2?'Q':(coinDraws[i][j]==3?'N':'D'));
+        }
+        printf(", ");
+    }
+
+    // print probabilities
+    printf("\n\n");
+    printf("nickels were drawn last %d times, which gives a probability of %f\n", lastNickel, (float)lastNickel/iterations);    
+   
+    int lastPickedNickel = 0;
+    int firstAndLastQuarter = 0;
+    for (int i = 0; i < iterations; i++) {
+        if (coinDraws[i][4] == 3) {
+            lastPickedNickel++;
+        }
+        if ((coinDraws[i][0] <= 2) && (coinDraws[i][4] <= 2)) {
+            firstAndLastQuarter++;
+        }
+    }
+
+    printf("found last nickels: %d, which gives probability of %f\n", lastPickedNickel, (float)lastPickedNickel/iterations);
+    printf("found first and last quarters: %d, which gives probability of %f\n", firstAndLastQuarter, (float)firstAndLastQuarter/iterations);
 
     // some space
     printf("\n");
-}
 }
