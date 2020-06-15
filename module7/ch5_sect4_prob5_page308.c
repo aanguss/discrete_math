@@ -70,7 +70,6 @@ int main(void)
     // print results
     for (int i = 0; i < 6; i++) {
         printf("rolled %d: %d\n", i+1, dice[i]);
-        test += (dice[i] * (i+1));
     }
     printf("average roll (or $ made): %.2f\n", (float)(totalValue/1000));
 
