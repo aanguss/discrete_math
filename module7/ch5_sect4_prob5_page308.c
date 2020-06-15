@@ -20,64 +20,59 @@ int main(void)
 {
     //Random coin flip which outputs % of heads vs tails, this can be ran a lot to ensure larger averages
     time_t t;
-    uint32_t heads = 0;
-    uint32_t tails = 0;
+    uint32_t dice[6];
+    float totalValue;
+
+    // initialize all index to 0
+    for(int i = 0; i < 6; i++) {
+        dice[i] = 0;
+    }
     
     // start with seperation so results are easier to see
     printf("\n");
-    printf("flip a coin 1000 times, results are:\n");
+    printf("roll a dice 1000 times, results are:\n");
 
     // start randomness with current time
     srand((unsigned) time(&t));
 
     // go through 1000 coins and find probability of each heads and tails
     for (int i = 0; i < 1000; i++) {
-        if (((rand() % 2) + 1) == 2) {
-            heads++;
-        } else {
-            tails++;
+        switch ((rand() % 6) + 1) {
+            case 1:
+                dice[0] += 1;
+                totalValue += 1;
+                break;
+            case 2:
+                dice[1] += 1;
+                totalValue += 2;
+                break;
+            case 3:
+                dice[2] += 1;
+                totalValue += 3;
+                break;
+            case 4:
+                dice[3] += 1;
+                totalValue += 4;
+                break;
+            case 5:
+                dice[4] += 1;
+                totalValue += 5;
+                break;
+            case 6:
+                dice[5] += 1;
+                totalValue += 6;
+                break;
+            default:
+                break;
         }
-    }
-    printf("heads: %d\n", heads);
-    printf("tails: %d\n", tails);
-    
-    printf("\n");
-    printf("now let's flip a coin 5 times and find out how many times heads lands 3 times:\n");
-    uint32_t five_flips[100][5];
-
-    // initialize all the coin flips to -1
-    for (int i = 0; i < 100; i++) {
-        for (int j = 0; j < 5; j++) {
-            five_flips[i][j] = 0;
-        }
-    }
-
-    // now add a coin value for each
-    for (int i = 0; i < 100; i++) {
-        for (int j = 0; j < 5; j++) {
-            five_flips[i][j] = ((rand() % 2) + 1);
-        }
-    }
-
-    // let's print them for funzies
-    int num3Heads = 0;
-    int num3PlusHeads = 0;
-    for (int i = 0; i < 100; i++) {
-        int numHeads = 0;
-        for (int j = 0; j < 5; j++) {
-            if (five_flips[i][j] == 2) {
-                numHeads++;
-            }
-            printf("%c", five_flips[i][j]==1?'H':'T');
-        }
-        if (numHeads == 3) { num3Heads++; }
-        if (numHeads >= 3) { num3PlusHeads++; }
-        printf(" | "); // new line for each five flips
     }
 
     // print results
-    printf("\nnumber of 3 heads: %d, which gives P(H) = %f\n", num3Heads, (float)num3Heads/100);
-    printf("number of at least 3 heads: %d, which gives P(H) = %f\n", num3PlusHeads, (float)num3PlusHeads/100);
+    for (int i = 0; i < 6; i++) {
+        printf("rolled %d: %d\n", i+1, dice[i]);
+        test += (dice[i] * (i+1));
+    }
+    printf("average roll (or $ made): %.2f\n", (float)(totalValue/1000));
 
     // some space
     printf("\n");
