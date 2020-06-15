@@ -16,17 +16,43 @@
 #include <time.h>
 #include <stdint.h>
 
+#define ATTEMPTS 1000 // number of roll attempts to average over
+
 int main(void)
 {
-   
-    
+    //Random dice roll
+    time_t t;
+    int rollAttempts[ATTEMPTS];
+    float averageRolls = 0;
+    int rollCount = 0;
+
+    // initialize all index to 0
+    for (int i = 0; i < ATTEMPTS; i++)
+    {
+        rollAttempts[i] = 0;
+    }
+
     // start with seperation so results are easier to see
     printf("\n");
-    
+    printf("roll a dice 1000 times until 6 is found, results are:\n");
+
+    // start randomness with current time
+    srand((unsigned)time(&t));
+
+    // go through 1000 dice rolls and find how many rolls it takes to get a 6
+    for (int i = 0; i < ATTEMPTS; i++)
+    {
+        rollCount = 1;
+        while (((rand() % 6) + 1) != 6) {
+            rollCount++;
+        }
+        rollAttempts[i] = rollCount;
+        printf("rollCount #%d: %d, ", (i+1), rollCount);
+        averageRolls += rollCount;
+    }
 
     // print results
-    printf("\nnumber of 3 heads: %d, which gives P(H) = %f\n", num3Heads, (float)num3Heads/100);
-    printf("number of at least 3 heads: %d, which gives P(H) = %f\n", num3PlusHeads, (float)num3PlusHeads/100);
+    printf("\n\naverage rollCount: %.2f\n", (averageRolls / ATTEMPTS));
 
     // some space
     printf("\n");
