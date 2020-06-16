@@ -3,7 +3,10 @@
  * Section 4 - Random Variables
  * Problem 5 - Page 380
  * Description -
- * Suppose I offer to play the following game with you if you will pay me some money. You roll a die, and I give you a dollar for each dot that is on top. What is the maximum amount of money a rational person might be willing to pay me to play this game?
+ *  Suppose I offer to play the following game with you if you will pay me some
+ *  money. You roll a die, and I give you a dollar for each dot that is on top.
+ *  What is the maximum amount of money a rational person might be willing to
+ *  pay me to play this game?
  */
 
 /** 
@@ -18,7 +21,7 @@
 
 int main(void)
 {
-    //Random coin flip which outputs % of heads vs tails, this can be ran a lot to ensure larger averages
+    //Random roll a coin, this can be ran a lot to ensure larger averages
     time_t t;
     uint32_t dice[6];
     float totalValue;
@@ -35,7 +38,7 @@ int main(void)
     // start randomness with current time
     srand((unsigned) time(&t));
 
-    // go through 1000 coins and find probability of each heads and tails
+    // go through 1000 rolls and find the total for each face value rolled
     for (int i = 0; i < 1000; i++) {
         switch ((rand() % 6) + 1) {
             case 1:

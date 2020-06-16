@@ -3,7 +3,8 @@
  * Section 4 - Random Variables
  * Problem 9 - Page 380
  * Description -
- * How many times do you expect to have to roll a die until you see a six on the top face? 
+ *  How many times do you expect to have to roll a die until you see a six on
+ *  the top face? 
  */
 
 /** 
